@@ -31,8 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                .antMatchers("/user").hasRole("USER")    //this tells that user url is accessible by the person who has USER role
                 .antMatchers("/admin").hasRole("ADMIN")  //this tells that admin url is accessible by the person who has ADMIN role
+                .antMatchers("/user").hasAnyRole("USER" , "ADMIN")    //this tells that user url is accessible by the person who has USER role
                 .antMatchers("/").permitAll()             //this tells that root url is accessible to all roles
                 .and()
                 .formLogin();
